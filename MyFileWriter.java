@@ -10,6 +10,9 @@ public class MyFileWriter {
         String fileName3 = "example3.txt";
         String fileName4 = "example4.txt";
         String fileName5 = "example5.txt";
+        String fileName6 = ".secretpassword.txt";
+        String fileName7 = "noLookie.txt";
+
 
         // 1. Using FileWriter
         try (FileWriter writer = new FileWriter(fileName1)) {
@@ -21,6 +24,18 @@ public class MyFileWriter {
         // 2. Using BufferedWriter
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName2))) {
             bufferedWriter.write(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName6))) {
+            bufferedWriter.write("a password");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+           try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName7))) {
+            bufferedWriter.write("confidential information");
         } catch (IOException e) {
             e.printStackTrace();
         }

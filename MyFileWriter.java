@@ -2,6 +2,9 @@ import java.io.*;
 import java.nio.file.*;
 import java.nio.charset.StandardCharsets;
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class MyFileWriter {
 
@@ -12,6 +15,31 @@ public class MyFileWriter {
             File file = new File(fileName);
             System.out.println(file.length());
         }
+
+
+       /**
+* Reads a text file and returns its contents as a string.
+* 
+* @param filePath the path to the file
+* @return the contents of the file as a string
+* @throws IOException if an I/O error occurs
+*/
+public static String stringify(String filePath) throws IOException {
+     // TODO: Implement this method
+     // Read the file at filePath and return its contents as a String
+    StringBuilder content = new StringBuilder();
+
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                content.append(line);
+            }
+        }
+
+        return content.toString();
+
+}
 
 
 

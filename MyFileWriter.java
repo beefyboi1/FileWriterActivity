@@ -1,20 +1,21 @@
 import java.io.*;
-import java.nio.file.*;
 import java.nio.charset.StandardCharsets;
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.nio.file.*;
 
 public class MyFileWriter {
 
 
      // Calculate and print the file size using the File class
-        private static void printFileSize(String fileName) {
-            // Implementation goes here
+    private static void printFileSize(String... fileNames) {
+        long totalSize = 0;
+        for (String fileName : fileNames) {
             File file = new File(fileName);
-            System.out.println(file.length());
+            if (file.exists()) {
+                totalSize += file.length();
+            }
         }
+        System.out.println("Total size of all files: " + totalSize + " bytes");
+    }
 
 
        /**
@@ -103,5 +104,7 @@ public static String stringify(String filePath) throws IOException {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        MyFileWriter.printFileSize("\\\\wsl.localhost\\Ubuntu-20.04\\home\\beef\\FileWriterActivity\\sizer.txt");
+
     }
 }

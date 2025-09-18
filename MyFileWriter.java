@@ -44,6 +44,46 @@ public static String stringify(String filePath) throws IOException {
 
 
 
+public static String hashFile(String path){
+    StringBuilder input = new StringBuilder();
+     try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                input.append(line);
+            }
+        }
+
+
+    // Static getInstance method is called with hashing SHA
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+        // digest() method called
+        // to calculate message digest of an input
+        // and return array of byte
+        try{
+        byte[] hash =  md.digest(input.getBytes(StandardCharsets.UTF_8));
+
+        // Convert byte array into signum representation
+        BigInteger number = new BigInteger(1, hash);
+
+        // Convert message digest into hex value
+        StringBuilder hexString = new StringBuilder(number.toString(16));
+
+        // Pad with leading zeros
+        while (hexString.length() < 64)
+        {
+            hexString.insert(0, '0');
+        }
+
+        return hexString.toString();
+    }
+    catch(IOException e){
+        System.out.println("error of type: error");
+    }
+        
+}
+
+
     public static void main(String[] args) {
         String data = "Hello, World!";
         String fileName1 = "example.txt";

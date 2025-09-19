@@ -48,14 +48,14 @@ public static String stringify(String filePath) throws IOException {
 
 
 
-public static String hashFile(String path) {
+public static String hashFile(String path) throws FileNotFoundException {
     //System.out.println("hello");
 
     // debugger doenst work
-    // File file = new File(path);
-    // if (file.exists()){
-    //     throw new FileNotFoundException("file does not exist. double check file path");
-    // }
+    File file = new File(path);
+    if (!file.exists()){
+        throw new FileNotFoundException("file does not exist. double check file path");
+    }
     String input = "";
      try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
@@ -98,7 +98,7 @@ public static String hashFile(String path) {
 }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // first tested it with the text "help" and it worked
         // I then tried an empty string test and it worked
         // afterwards i tried a file that doesnt exist and i had to add a thrown filenotfoundexception
